@@ -1,18 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    static GameManager gameManager;
+    public Text highScoreText;
+    public static GameManager Instance
     {
+        get { return gameManager; }
+    }
+    private void Awake()
+    {
+        gameManager = this;
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void GameOver()
     {
-        
+        Debug.Log("Game Over");
+        SceneManager.LoadScene("GameOver");
+    }
+    void Start()
+    {
+        int highScore = PlayerPrefs.GetInt("BestScore", 0);
+        highScoreText.text =highScore.ToString();
+    }
+
+    public void SaveScore(int score)
+    {
+        PlayerPrefs.SetInt("BestScore", score);
+        PlayerPrefs.Save();
     }
 }
