@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class ColliderObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Player.HP > 0 && Player.Collider2D == (true))
+        if(collision.gameObject.tag == "")
         {
-            Player.HP -= 10;
+            if(Player.Hp > 0)
+            {
+                Player.Hp -= 10;
+            }
+            else
+            {
+                GameOver();
+            }
         }
-        
     }
 }
