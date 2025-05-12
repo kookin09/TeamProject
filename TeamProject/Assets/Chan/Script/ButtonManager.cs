@@ -1,31 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-    Button ExitButton;
-    Button RestartButton;
+   
+    private Button retryButton;   // 다시 시작 버튼
+    private Button exitButton;    // 종료 버튼
+
     void Start()
     {
-        ExitButton = GameObject.Find("Exit").GetComponent<Button>();
-        RestartButton = GameObject.Find("Retry").GetComponent<Button>();
+        // 각각의 버튼 오브젝트를 찾아서 버튼 컴포넌트 할당
+       
+        retryButton = GameObject.Find("Retry").GetComponent<Button>();
+        exitButton = GameObject.Find("Exit").GetComponent<Button>();
 
-        ExitButton.onClick.AddListener(ExitGame);
-        RestartButton.onClick.AddListener(LoadScene);
+        // 클릭 이벤트에 함수 연결
+        
+        retryButton.onClick.AddListener(RestartGame);
+        exitButton.onClick.AddListener(ExitGame);
     }
-    public void LoadScene()
+
+    
+   
+    // 다시 시작 버튼 클릭 시 호출
+    public void RestartGame()
     {
-        // SceneManager.LoadScene(""); // 로드할 씬 이름
-        Debug.Log("LoadScene");
+        Debug.Log("Retry Game");
+       // SceneManager.LoadScene(); // 현재 씬 다시 로드
     }
+
+    // 게임 종료 버튼 클릭 시 호출
     public void ExitGame()
     {
-       //  SceneManager.LoadScene(""); // 로드할 씬 이름
-       Debug.Log("ExitGame");
-       
+        Debug.Log("Exit Game");
+
+        UnityEditor.EditorApplication.isPlaying = false; // 유니티 에디터에서 종료
+
+        Application.Quit(); // 빌드된 게임에서 종료
+
     }
 }
