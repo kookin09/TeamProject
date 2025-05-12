@@ -6,6 +6,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class PlayerCollision : MonoBehaviour
 {
     public HpBar hpbar;
+    public ScoreManager score;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,13 +16,20 @@ public class PlayerCollision : MonoBehaviour
             {
                 hpbar.UpdateHp(10);
             }
-            Debug.Log("충돌했습니다.");
+           
         }
         else if (collision.gameObject.tag == "potion") //""태그의 물체와 충돌하였을 때
         {
             if(hpbar != null)
             {
                 hpbar.UpdateHp(20);
+            }
+            Destroy(collision.gameObject);
+        }
+        else if(collision.gameObject.tag == "Gem")
+        {
+            if(score != null)
+            {
             }
             Destroy(collision.gameObject);
         }
