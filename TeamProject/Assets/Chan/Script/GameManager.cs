@@ -7,10 +7,28 @@ public class GameManager : MonoBehaviour
 {
     static GameManager gameManager;
     public Text highScoreText;
-    public static GameManager Instance
+    public Text ClearTime;
+    private float startTime;
+    private float clearTime;
+
+
+
+    public void starttime()
     {
-        get { return gameManager; }
+        
     }
+    public void EndGame()
+    {
+        clearTime = Time.time - startTime;
+        ShowClearTime();
+    }
+
+    private void ShowClearTime()
+    {
+        // 소수점 둘째 자리까지 표시
+        ClearTime.text = $"{clearTime:F2}초";
+    }
+
     private void Awake()
     {
         gameManager = this;
@@ -25,7 +43,8 @@ public class GameManager : MonoBehaviour
     {
         int highScore = PlayerPrefs.GetInt("BestScore", 0);
         highScoreText.text =highScore.ToString();
-    }
+        startTime = Time.time;
+}
 
     public void SaveScore(int score)
     {
