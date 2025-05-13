@@ -1,31 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+// using System.Collections;
+// using System.Collections.Generic;
+// using UnityEngine;
+// using UnityEngine.SocialPlatforms.Impl;
 
-public class ColliderObject : MonoBehaviour
-{
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "") //""ÅÂ±×ÀÇ ¹°Ã¼¿Í Ãæµ¹ÇÏ¿´À» °æ¿ì
-        {
-            if(hp > 0) //Ã¼·ÂÀÌ 0º¸´Ù Å¬ ¶§
-            {
-                hp -= 10; // Ã¼·Â 10°¨¼Ò
-            }
-            else
-            {
-                GameOver(); //¹İ´ëÀÇ °æ¿ì °ÔÀÓÁ¾·á
-            }
-        }
-        else if (collision.gameObject.tag == "") //""ÅÂ±×ÀÇ ¹°Ã¼¿Í Ãæµ¹ÇÏ¿´À» ¶§
-        {
-            Hp += 10; //hp 10È¸º¹
-            Hp = Mathf.Clamp(Hp, 0, 100); // Ã¼·Â ÃÖ´ë ÃÖ¼Ò°ª¼³Á¤
-        }
-        else if (collision.gameObject.tag == "")
-        {
-            Score += 1000;
-        }
-    }
-}
+// public class ColliderObject : MonoBehaviour
+// {
+//     private void OnCollisionEnter2D(Collision2D collision)
+//     {
+//         if (collision.gameObject.tag == "") //""íƒœê·¸ì˜ ë¬¼ì²´ì™€ ì¶©ëŒí•˜ì˜€ì„ ê²½ìš°
+//         {
+//             if(hp > 0) //ì²´ë ¥ì´ 0ë³´ë‹¤ í´ ë•Œ
+//             {
+//                 hp -= 10; // ì²´ë ¥ 10ê°ì†Œ
+//             }
+//             else
+//             {
+//                 GameOver(); //ë°˜ëŒ€ì˜ ê²½ìš° ê²Œì„ì¢…ë£Œ
+//             }   
+//         }
+//         else if (collision.gameObject.tag == "") //""íƒœê·¸ì˜ ë¬¼ì²´ì™€ ì¶©ëŒí•˜ì˜€ì„ ë•Œ
+//         {
+//             Hp += 10; //hp 10íšŒë³µ
+//             Hp = Mathf.Clamp(Hp, 0, 100); // ì²´ë ¥ ìµœëŒ€ ìµœì†Œê°’ì„¤ì •
+//         }
+//         else if (collision.gameObject.tag == "")
+//         {
+//             Score += 1000;
+//         }
+//     }
+// }
