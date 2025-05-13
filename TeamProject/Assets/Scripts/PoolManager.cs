@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ObjectType { smallCoin, bigCoin, coinBundle }
 public class PoolManager : MonoBehaviour
 {
-    public enum ObjectType { smallCoin, bigCoin, coinBundle }
-
     [System.Serializable]
     public class PoolItem
     {
@@ -12,7 +11,7 @@ public class PoolManager : MonoBehaviour
     public GameObject prefab;
     public int size;
     }
-
+    
     public List<PoolItem> items;
     private Dictionary<ObjectType, Queue<GameObject>> pools = new();
 
@@ -46,7 +45,7 @@ public class PoolManager : MonoBehaviour
     {
         obj.SetActive(false);
         if (!pools.ContainsKey(type)) pools[type] = new Queue<GameObject>();
-        pools[type].Enqueue(obj);
+        pools[type].Enqueue(obj); 
     }
 
     private GameObject GetPrefab(ObjectType type)
