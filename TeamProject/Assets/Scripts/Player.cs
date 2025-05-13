@@ -67,9 +67,9 @@ public class Player : MonoBehaviour
         // Space를 누르고, 점프 횟수가 남았다면 점프
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJump)
         {
-            animator.SetBool("IsJump", true);
             rb.velocity = new Vector2(rb.velocity.x, 0); // 기존 위속도 초기화
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            animator.SetBool("IsJump", true);
             jumpCount++;
             
 
@@ -112,6 +112,8 @@ public class Player : MonoBehaviour
     // 땅 체크 (OverlapCircle 사용)
     bool IsGrounded()
     {   
-        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer) != null;
+        bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Debug.Log("IsGrounded: " + isGrounded); 
+        return isGrounded;
     }
 }
