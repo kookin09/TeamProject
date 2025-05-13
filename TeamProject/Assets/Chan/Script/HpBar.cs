@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class HpBar : MonoBehaviour
 {
     public int maxHp = 100;         // 최대 체력 값
-    public int currentHp;           // 현재 체력 값
+    public int currentHp;     // 현재 체력 값
 
     public Image HpBarImage;        // 체력바로 사용할 Image UI (Filled 타입 사용)
 
