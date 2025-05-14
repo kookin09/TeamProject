@@ -32,7 +32,8 @@ public class GameManager : MonoBehaviour
     {      
         if (SceneManager.GetActiveScene().name != "GameOver")
         {
-            StartTimer();
+            if (SceneManager.GetActiveScene().name != "GameStart")
+                StartTimer();
         }
     }
 

@@ -15,7 +15,12 @@ public class HpBar : MonoBehaviour
         currentHp = maxHp;          // 현재 체력을 최대 체력으로 설정
         UpdateHpBar();              // 체력바 UI 갱신
     }
-
+    // 체력을 최대값으로 회복시키는 함수
+    public void ResetHp()
+    {
+        currentHp = maxHp;          // 체력을 최대값으로 설정
+        UpdateHpBar();              // 체력바 UI 갱신
+    }
     // 데미지를 받아 체력을 감소시키는 함수
     public void UpdateHp(int damage)
     {
@@ -23,14 +28,6 @@ public class HpBar : MonoBehaviour
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);   // 체력을 0 ~ maxHp 사이로 제한
         UpdateHpBar();              // 체력바 UI 갱신
     }
-
-    // 체력을 최대값으로 회복시키는 함수
-    public void ResetHp()
-    {
-        currentHp = maxHp;          // 체력을 최대값으로 설정
-        UpdateHpBar();              // 체력바 UI 갱신
-    }
-
     // 체력바 UI를 현재 체력에 맞게 업데이트하는 함수
     void UpdateHpBar()
     {
