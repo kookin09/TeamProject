@@ -4,16 +4,15 @@ using UnityEngine.UI;
 
 public class HpBar : MonoBehaviour
 {
-    public int maxHp = 100;         // 최대 체력 값
-    public int currentHp;     // 현재 체력 값
+    public int maxHp = 100;  // 최대 체력 값
+    public int currentHp;  // 현재 체력 값
+    public Image HpBarImage;  // 체력바로 사용할 Image UI (Filled 타입 사용)
 
-    public Image HpBarImage;        // 체력바로 사용할 Image UI (Filled 타입 사용)
 
-    // 게임 시작 시 초기화 함수
     void Start()
     {
-        currentHp = maxHp;          // 현재 체력을 최대 체력으로 설정
-        UpdateHpBar();              // 체력바 UI 갱신
+        currentHp = maxHp;     
+        Debug.Log(currentHp);       
     }
     // 체력을 최대값으로 회복시키는 함수
     public void ResetHp()
@@ -22,11 +21,11 @@ public class HpBar : MonoBehaviour
         UpdateHpBar();              // 체력바 UI 갱신
     }
     // 데미지를 받아 체력을 감소시키는 함수
-    public void UpdateHp(int damage)
+    public void MinusHp(int damage)
     {
-        currentHp -= damage;        // 데미지만큼 체력 감소
-        currentHp = Mathf.Clamp(currentHp, 0, maxHp);   // 체력을 0 ~ maxHp 사이로 제한
-        UpdateHpBar();              // 체력바 UI 갱신
+        currentHp -= damage;       
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp); 
+        UpdateHpBar(); 
     }
 <<<<<<< HEAD
 =======
@@ -41,8 +40,8 @@ public class HpBar : MonoBehaviour
     // 체력을 최대값으로 회복시키는 함수
     public void ResetHp()
     {
-        currentHp = maxHp;          // 체력을 최대값으로 설정
-        UpdateHpBar();              // 체력바 UI 갱신
+        currentHp = maxHp;       
+        UpdateHpBar();           
     }
 
 >>>>>>> develop
@@ -56,19 +55,19 @@ public class HpBar : MonoBehaviour
             HpBarImage.fillAmount = (float)currentHp / maxHp;
         }
     }
-    private void Update()
-    {
-        if (currentHp <= 0)
-        {
+    // private void Update()
+    // {
+    //     if (currentHp <= 0)
+    //     {
 
-            // 체력이 0 이하일 경우 게임 오버 처리
-            Debug.Log("Game Over");
+    //         // 체력이 0 이하일 경우 게임 오버 처리
+    //         Debug.Log("Game Over");
 
-        }
-        if (Input.GetMouseButtonDown(0))  // 0: 왼쪽 클릭
-        {
-            // 클릭 시 체력을 10만큼 감소
-            UpdateHp(10);  // 체력을 10만큼 줄이는 함수 호출
-        }
-    }
+    //     }
+    //     if (Input.GetMouseButtonDown(0))  // 0: 왼쪽 클릭
+    //     {
+    //         // 클릭 시 체력을 10만큼 감소
+    //         MinusHp(10);  // 체력을 10만큼 줄이는 함수 호출
+    //     }
+    // }
 }

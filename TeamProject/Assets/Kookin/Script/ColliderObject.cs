@@ -8,35 +8,33 @@ namespace Assets.Kookin.Script
 {
     public class ColliderObject : MonoBehaviour
     {
+        Player player;
         HpBar hpBar; //HpBar 스크립트의 객체를 담을 변수
         GameManager gameManager; //GameManager 스크립트의 객체를 담을 변수
+
         private void Start()
         {
-            hpBar = GameObject.Find("HpBar").GetComponent<HpBar>(); //HpBar 스크립트의 객체를 찾는다
-
+            hpBar = GameObject.Find("HpBar").GetComponentInChildren<HpBar>();
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
-        private void OnCollisionEnter2D(Collision2D collision)
+
+        private void OnTriggerEnter2D(Collider2D collision) 
         {
 
-            if (collision.gameObject.tag == "") //""태그의 물체와 충돌하였을 경우
+            if (collision.gameObject.tag == "Player") //""태그의 물체와 충돌하였을 경우
             {
-                if (hpBar.currentHp >= 0) //체력이 0보다 클 때
+                player = collision.gameObject.GetComponent<Player>();
+                Debug.Log("Player와 부딪힘");
+                if (hpBar.currentHp > 0) //체력이 0보다 클 때
                 {
-                    hpBar.UpdateHp(10); //hp 10감소
+                    hpBar.MinusHp(10); //hp 10감소
+                    player.Damage();
+
                 }
                 else
                 {
                     gameManager.GameOver(); //반대의 경우 게임종료
                 }
-            }
-            else if (collision.gameObject.tag == "") //""태그의 물체와 충돌하였을 때
-            {
-                hpBar.currentHp += 10; //hp 10회복
-
-            }
-            else if (collision.gameObject.tag == "")
-            {
-                //Score += 1000;
             }
         }
     }

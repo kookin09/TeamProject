@@ -7,49 +7,86 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D), typeof(Animator))]
 public class Player : MonoBehaviour
 {
-    [Header("── 이동 / 점프 ──")]
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float jumpForce = 11f;
-    [SerializeField, Range(1, 2)] int maxJump = 2;
 
-    [Header("── 땅 판정 ──")]
-    [SerializeField] Transform groundCheck;
-    [SerializeField] float groundRadius = 0.2f;
-    [SerializeField] LayerMask groundMask;
+ // 배경음과 효과음
+    public AudioClip jumpSound;
+    public AudioClip slideSound;
+    public AudioSource sfxSource;
+    private Animator animator;
 
-    [Header("── 슬라이드 ──")]
-    [SerializeField] AudioSource slideSource;
-    [SerializeField] AudioClip slideClip;
+    // 이동 속도와 점프 세기
+    public float moveSpeed = 5f;
+    public float jumpForce = 15f;
 
-    [Header("── 벽 끼임 해소 ──")]
-    [SerializeField] float stuckSpeedThreshold = 0.05f;
-    [SerializeField] float stuckCheckDuration = 0.25f;
-    [SerializeField] LayerMask wallMask;
+    // 최대 점프 횟수 (2단 점프)
+    public int maxJump = 2;
+    private int jumpCount = 0;
 
-    Rigidbody2D rb;
-    Animator anim;
-    BoxCollider2D boxCol;
+    // Rigidbody2D 저장용
+    private Rigidbody2D rb;
 
-    Vector3 origScale;
-    Vector2 origSize, origOffset;
+    // 땅 체크용 변수
+    public Transform groundCheck;
+    public float groundCheckRadius = 0.2f;
+    public LayerMask groundLayer;
 
-    int jumpCount = 0;
-    bool isSliding = false;
-    bool wasGrounded = false;
-    float stuckTimer = 0f;
+    // 슬라이드 관련 설정
+    public Vector2 slideScale = new Vector2(1f, 0.5f); // 슬라이드 시 캐릭터 크기
+    private bool isSliding = false;
 
-    void Awake()
+    private Vector2 originalScale;
+
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        boxCol = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
+        Debug.Log(animator);
+        originalScale = transform.localScale;
+// =======
+//     [Header("── 이동 / 점프 ──")]
+//     [SerializeField] float moveSpeed = 5f;
+//     [SerializeField] float jumpForce = 11f;
+//     [SerializeField, Range(1, 2)] int maxJump = 2;
 
-        origScale = transform.localScale;
-        origSize = boxCol.size;
-        origOffset = boxCol.offset;
+//     [Header("── 땅 판정 ──")]
+//     [SerializeField] Transform groundCheck;
+//     [SerializeField] float groundRadius = 0.2f;
+//     [SerializeField] LayerMask groundMask;
 
-        slideSource.loop = true;
-        slideSource.clip = slideClip;
+//     [Header("── 슬라이드 ──")]
+//     [SerializeField] AudioSource slideSource;
+//     [SerializeField] AudioClip slideClip;
+
+//     [Header("── 벽 끼임 해소 ──")]
+//     [SerializeField] float stuckSpeedThreshold = 0.05f;
+//     [SerializeField] float stuckCheckDuration = 0.25f;
+//     [SerializeField] LayerMask wallMask;
+
+//     Rigidbody2D rb;
+//     Animator anim;
+//     BoxCollider2D boxCol;
+
+//     Vector3 origScale;
+//     Vector2 origSize, origOffset;
+
+//     int jumpCount = 0;
+//     bool isSliding = false;
+//     bool wasGrounded = false;
+//     float stuckTimer = 0f;
+
+//     void Awake()
+//     {
+//         rb = GetComponent<Rigidbody2D>();
+//         anim = GetComponent<Animator>();
+//         boxCol = GetComponent<BoxCollider2D>();
+
+//         origScale = transform.localScale;
+//         origSize = boxCol.size;
+//         origOffset = boxCol.offset;
+
+//         slideSource.loop = true;
+//         slideSource.clip = slideClip;
+// >>>>>>> develop
     }
 
     void Update()
@@ -69,9 +106,15 @@ public class Player : MonoBehaviour
             EndSlide();
     }
 
-    void FixedUpdate()
+
+    // 점프
+    void HandleJump()
     {
-        bool grounded = IsGrounded();
+// =======
+//     void FixedUpdate()
+//     {
+//         bool grounded = IsGrounded();
+// >>>>>>> develop
 
         if (!wasGrounded && grounded)
         {
@@ -136,30 +179,69 @@ public class Player : MonoBehaviour
     }
 
     bool IsGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundMask);
+    {   
+        bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        return isGrounded;
     }
 
-    bool IsWallAhead()
+    //피격
+    public void Damage()
     {
-        Vector2 origin = (Vector2)transform.position + Vector2.right * (boxCol.size.x / 2 + 0.01f);
-        origin.y += boxCol.offset.y;
-        return Physics2D.BoxCast(origin, boxCol.size, 0f, Vector2.right, 0.01f, wallMask);
+        animator.SetBool("IsDamage", true);
+        StartCoroutine(ResetDamageState());
+    }
+    IEnumerator ResetDamageState()
+    {
+        yield return new WaitForSeconds(1f); // 1초 대기
+        animator.SetBool("IsDamage", false);
     }
 
-    void LateUpdate()
+    //죽음
+    public virtual void Death()
     {
-        transform.rotation = Quaternion.identity;
+
+    rb.velocity = Vector3.zero;
+
+    // foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+    // {
+    //     Color color = renderer.color;
+    //     color.a = 0.3f;
+    //     renderer.color = color;
+    // }
+
+    foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+    {
+        component.enabled = false;
     }
 
-#if UNITY_EDITOR
-    void OnDrawGizmosSelected()
-    {
-        if (groundCheck)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
-        }
+    Destroy(gameObject, 2f);
     }
-#endif
+// =======
+//     {
+//         return Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundMask);
+//     }
+
+//     bool IsWallAhead()
+//     {
+//         Vector2 origin = (Vector2)transform.position + Vector2.right * (boxCol.size.x / 2 + 0.01f);
+//         origin.y += boxCol.offset.y;
+//         return Physics2D.BoxCast(origin, boxCol.size, 0f, Vector2.right, 0.01f, wallMask);
+//     }
+
+//     void LateUpdate()
+//     {
+//         transform.rotation = Quaternion.identity;
+//     }
+
+// #if UNITY_EDITOR
+//     void OnDrawGizmosSelected()
+//     {
+//         if (groundCheck)
+//         {
+//             Gizmos.color = Color.green;
+//             Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
+//         }
+//     }
+// #endif
+// >>>>>>> develop
 }

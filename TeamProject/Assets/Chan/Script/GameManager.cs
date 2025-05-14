@@ -4,32 +4,34 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º (´Ù¸¥ ½ºÅ©¸³Æ®¿¡¼­ GameManager.Instance·Î Á¢±Ù °¡´É)
+    // ì‹±ê¸€í†¤ ì¸ìŠ¤í„´ìŠ¤ (ë‹¤ë¥¸ ìŠ¤í¬ë¦½íŠ¸ì—ì„œ GameManager.Instanceë¡œ ì ‘ê·¼ ê°€ëŠ¥)
     public static GameManager Instance { get; private set; }
 
    
-    public Text ClearTime;      // Å¬¸®¾î ½Ã°£ Ç¥½Ã¿ë UI Text
+    public Text ClearTime;      // í´ë¦¬ì–´ ì‹œê°„ í‘œì‹œìš© UI Text
 
-    private float startTime;    // °ÔÀÓ ½ÃÀÛ ½Ã°£ ÀúÀå
-    private float clearTime;    // Å¬¸®¾î ½Ã °É¸° ½Ã°£ ÀúÀå
-    private bool gameEnded = false;  // °ÔÀÓ Å¬¸®¾î ¿©ºÎ Ã¼Å©
+    private float startTime;    // ê²Œì„ ì‹œì‘ ì‹œê°„ ì €ì¥
+    private float clearTime;    // í´ë¦¬ì–´ ì‹œ ê±¸ë¦° ì‹œê°„ ì €ì¥
+    private bool gameEnded = false;  // ê²Œì„ í´ë¦¬ì–´ ì—¬ë¶€ ì²´í¬
 
     private void Awake()
     {
-        // ½Ì±ÛÅæ ÆĞÅÏ ±¸Çö
+        // ì‹±ê¸€í†¤ íŒ¨í„´ êµ¬í˜„
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // ¾À ³Ñ¾î°¡µµ À¯ÁöµÊ
+            DontDestroyOnLoad(gameObject); // ì”¬ ë„˜ì–´ê°€ë„ ìœ ì§€ë¨
         }
         else
         {
-            Destroy(gameObject); // Áßº¹ ÀÎ½ºÅÏ½º Á¦°Å
+            Destroy(gameObject); // ì¤‘ë³µ ì¸ìŠ¤í„´ìŠ¤ ì œê±°
         }
     }
 
     void Start()
+
     {      
+
         if (SceneManager.GetActiveScene().name != "GameOver")
         {
             if (SceneManager.GetActiveScene().name != "GameStart")
@@ -39,55 +41,55 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // °ÔÀÓÀÌ ¾ÆÁ÷ ³¡³ªÁö ¾Ê¾Ò°í, °×¿À¹ö ¾ÀÀÌ ¾Æ´Ò ¶§¸¸ ½Ã°£ ¾÷µ¥ÀÌÆ®
-        if (!gameEnded && SceneManager.GetActiveScene().name != "GameOver")
-        {
-            float elapsed = Time.time - startTime;        // °æ°ú ½Ã°£ °è»ê
-            ClearTime.text = FormatTime(elapsed);         // ÅØ½ºÆ®·Î Ç¥½Ã
-        }
+        // ê²Œì„ì´ ì•„ì§ ëë‚˜ì§€ ì•Šì•˜ê³ , ê²œì˜¤ë²„ ì”¬ì´ ì•„ë‹ ë•Œë§Œ ì‹œê°„ ì—…ë°ì´íŠ¸
+        // if (!gameEnded && SceneManager.GetActiveScene().name != "GameOver")
+        // {
+        //     float elapsed = Time.time - startTime;        // ê²½ê³¼ ì‹œê°„ ê³„ì‚°
+        //     ClearTime.text = FormatTime(elapsed);         // í…ìŠ¤íŠ¸ë¡œ í‘œì‹œ
+        // }
     }
 
-    // °ÔÀÓ ½ÃÀÛ ½Ã°£ ÀúÀå
+    // ê²Œì„ ì‹œì‘ ì‹œê°„ ì €ì¥
     public void StartTimer()
     {
         startTime = Time.time;
         gameEnded = false;
     }
 
-    // °ÔÀÓ Å¬¸®¾î Ã³¸®
+    // ê²Œì„ í´ë¦¬ì–´ ì²˜ë¦¬
     public void EndGame()
     {
-        SceneManager.LoadScene("GameOver"); // GameOver ¾ÀÀ¸·Î ÀÌµ¿
-        if (gameEnded) return; // Áßº¹ ½ÇÇà ¹æÁö
+        SceneManager.LoadScene("GameOver"); // GameOver ì”¬ìœ¼ë¡œ ì´ë™
+        if (gameEnded) return; // ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
 
-        clearTime = Time.time - startTime; // Å¬¸®¾î ½ÃÁ¡ÀÇ °æ°ú ½Ã°£ ÀúÀå
+        clearTime = Time.time - startTime; // í´ë¦¬ì–´ ì‹œì ì˜ ê²½ê³¼ ì‹œê°„ ì €ì¥
         gameEnded = true;
 
-        ShowClearTime();       // Å¬¸®¾î ½Ã°£ ÅØ½ºÆ® Ç¥½Ã
+        ShowClearTime();       // í´ë¦¬ì–´ ì‹œê°„ í…ìŠ¤íŠ¸ í‘œì‹œ
     }
 
-    // Å¬¸®¾î ½Ã°£ Ç¥½Ã + °ÔÀÓ ÀÏ½Ã Á¤Áö
+    // í´ë¦¬ì–´ ì‹œê°„ í‘œì‹œ + ê²Œì„ ì¼ì‹œ ì •ì§€
     private void ShowClearTime()
     {
         ClearTime.text = $"{FormatTime(clearTime)}";
-        Time.timeScale = 0f; // °ÔÀÓ Á¤Áö (ÀÏ½Ã Á¤Áö)
+        Time.timeScale = 0f; // ê²Œì„ ì •ì§€ (ì¼ì‹œ ì •ì§€)
     }
 
-    // float ÃÊ ´ÜÀ§ ½Ã°£À» "ºĞ:ÃÊ" Çü½ÄÀ¸·Î ¹Ù²ãÁÖ´Â ÇÔ¼ö
+    // float ì´ˆ ë‹¨ìœ„ ì‹œê°„ì„ "ë¶„:ì´ˆ" í˜•ì‹ìœ¼ë¡œ ë°”ê¿”ì£¼ëŠ” í•¨ìˆ˜
     private string FormatTime(float time)
     {
-        int minutes = Mathf.FloorToInt(time / 60f); // ºĞ ´ÜÀ§
-        int seconds = Mathf.FloorToInt(time % 60f); // ÃÊ ´ÜÀ§
-        return $"{minutes:00}ºĞ:{seconds:00}ÃÊ";        // ¿¹: 01:05
+        int minutes = Mathf.FloorToInt(time / 60f); // ë¶„ ë‹¨ìœ„
+        int seconds = Mathf.FloorToInt(time % 60f); // ì´ˆ ë‹¨ìœ„
+        return $"{minutes:00}ë¶„:{seconds:00}ì´ˆ";        // ì˜ˆ: 01:05
     }
 
-    // °ÔÀÓ ¿À¹ö Ã³¸® (¾À ÀüÈ¯ µî)
+    // ê²Œì„ ì˜¤ë²„ ì²˜ë¦¬ (ì”¬ ì „í™˜ ë“±)
     public void GameOver()
     {
         Debug.Log("Game Over");
-        SceneManager.LoadScene("GameOver"); // GameOver ¾ÀÀ¸·Î ÀÌµ¿
+        SceneManager.LoadScene("GameOver"); // GameOver ì”¬ìœ¼ë¡œ ì´ë™
     }
 
-    // Á¡¼ö ÀúÀå
+    // ì ìˆ˜ ì €ì¥
   
 }

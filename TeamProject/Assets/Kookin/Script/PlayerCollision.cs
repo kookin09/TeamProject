@@ -13,11 +13,11 @@ public class PlayerCollision : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
-        // hpBar¸¦ Ã£°Å³ª ÇÒ´ç
+        // hpBarë¥¼ ì°¾ê±°ë‚˜ í• ë‹¹
         hpBar = FindObjectOfType<HpBar>();
         if (hpBar == null)
         {
-            Debug.LogError("HpBar¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù. ¾À¿¡ HpBar ¿ÀºêÁ§Æ®°¡ ÀÖ´ÂÁö È®ÀÎÇÏ¼¼¿ä.");
+            Debug.LogError("HpBarë¥¼ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ì”¬ì— HpBar ì˜¤ë¸Œì íŠ¸ê°€ ìˆëŠ”ì§€ í™•ì¸í•˜ì„¸ìš”.");
         }
     }
 
@@ -46,9 +46,9 @@ public class PlayerCollision : MonoBehaviour
             if (player != null)
             {
                 gameManager.UpdateScore(100);
-                Debug.Log("ÇöÀç Á¡¼ö: " + gameManager.nowScore);
+                Debug.Log("í˜„ì¬ ì ìˆ˜: " + gameManager.nowScore);
             }
-            Debug.Log("Ãæµ¹");
+            Debug.Log("ì¶©ëŒ");
             Destroy(collision.gameObject);
         }
     }
