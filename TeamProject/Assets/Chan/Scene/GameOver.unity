@@ -694,7 +694,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe79a44e7b79af742b33f8d799c07cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highScoreText: {fileID: 622150079}
   ClearTime: {fileID: 1316911282}
 --- !u!4 &488843807
 Transform:
@@ -2064,6 +2063,7 @@ GameObject:
   - component: {fileID: 1931248442}
   - component: {fileID: 1931248441}
   - component: {fileID: 1931248440}
+  - component: {fileID: 1931248443}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -2156,6 +2156,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1931248443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931248438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24cf6b8c1a9f6ba4bb68dc0c7e9929c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreAmount: 100
+  highScoreText: {fileID: 622150079}
+  currentScoreText: {fileID: 1004027425}
 --- !u!1 &1989792549
 GameObject:
   m_ObjectHideFlags: 0
