@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip slideSound;
     public AudioSource sfxSource;
-    Animator animator;
+    private Animator animator;
 
     // 이동 속도와 점프 세기
     public float moveSpeed = 5f;
@@ -30,12 +30,18 @@ public class Player : MonoBehaviour
     public Vector2 slideScale = new Vector2(1f, 0.5f); // 슬라이드 시 캐릭터 크기
     private bool isSliding = false;
     private Vector2 originalScale;
-    
+    GameManager gameManager;
+    public int currentHp;
+    public int maxhp = 100;
+    public int damage = 20;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        Debug.Log(animator);
         originalScale = transform.localScale;
+        currentHp = maxhp;
     }
 
     void Update()
@@ -54,7 +60,6 @@ public class Player : MonoBehaviour
     // 점프 처리
     void HandleJump()
     {
-        Animator animator = GetComponent<Animator>();
 
         // 땅에 닿으면 점프 횟수 초기화
         if (IsGrounded())
@@ -113,7 +118,42 @@ public class Player : MonoBehaviour
     bool IsGrounded()
     {   
         bool isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        Debug.Log("IsGrounded: " + isGrounded); 
         return isGrounded;
+    }
+
+    // 피격
+    // public void Damage()
+    // {
+    //     animator.SetBool("IsDamage", true);
+    //     currentHp -= damage;
+    //     StartCoroutine(ResetDamageState());
+    // }
+    // IEnumerator ResetDamageState()
+    // {
+    //     yield return new WaitForSeconds(1f); // 1초 대기
+    //     animator.SetBool("IsDamage", false); // 다시 false로 변경
+
+    // }
+
+    // 죽음
+    public virtual void Death()
+    {
+
+    rb.velocity = Vector3.zero;
+
+    foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+    {
+        Color color = renderer.color;
+        color.a = 0.3f;
+        renderer.color = color;
+    }
+
+    foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
+    {
+        component.enabled = false;
+    }
+
+    Destroy(gameObject, 2f);
+    gameManager.EndGame();
     }
 }

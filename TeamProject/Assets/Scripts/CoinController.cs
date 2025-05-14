@@ -47,8 +47,8 @@ public class CoinController : MonoBehaviour
                 Debug.Log($"SmallCoin : {gold}");
             }
 
-            Destroy(gameObject);
             CoinDestroyEffect();
+            Destroy(gameObject);
         
         }
     }
@@ -57,7 +57,7 @@ public class CoinController : MonoBehaviour
 
     public void CoinDestroyEffect()
     {
-        coinDestroyEffectSystem.Stop();
+        // coinDestroyEffectSystem.Stop();
         coinDestroyEffectSystem.Play();
     }
     
