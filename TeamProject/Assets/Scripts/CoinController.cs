@@ -39,15 +39,17 @@ public class CoinController : MonoBehaviour
             {
                 gold += bigCoin;
                 Debug.Log($"BigCoin : {gold}");
+                CoinDestroyEffect();
             }
 
             else if(gameObject.name == "SmallCoin")
             {
                 gold += smallCoin;
                 Debug.Log($"SmallCoin : {gold}");
+                CoinDestroyEffect();
             }
 
-            CoinDestroyEffect();
+            
             Destroy(gameObject);
         
         }

@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         
         // 최고 점수 불러와서 텍스트에 표시
         int highScore = PlayerPrefs.GetInt("BestScore", 0);
-        highScoreText.text = highScore.ToString();
+        // highScoreText.text = highScore.ToString();
 
         
         if (SceneManager.GetActiveScene().name != "GameOver")
@@ -45,11 +45,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         // 게임이 아직 끝나지 않았고, 겜오버 씬이 아닐 때만 시간 업데이트
-        if (!gameEnded && SceneManager.GetActiveScene().name != "GameOver")
-        {
-            float elapsed = Time.time - startTime;        // 경과 시간 계산
-            ClearTime.text = FormatTime(elapsed);         // 텍스트로 표시
-        }
+        // if (!gameEnded && SceneManager.GetActiveScene().name != "GameOver")
+        // {
+        //     float elapsed = Time.time - startTime;        // 경과 시간 계산
+        //     ClearTime.text = FormatTime(elapsed);         // 텍스트로 표시
+        // }
     }
 
     // 게임 시작 시간 저장

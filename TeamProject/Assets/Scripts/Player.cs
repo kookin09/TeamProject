@@ -29,11 +29,8 @@ public class Player : MonoBehaviour
     // 슬라이드 관련 설정
     public Vector2 slideScale = new Vector2(1f, 0.5f); // 슬라이드 시 캐릭터 크기
     private bool isSliding = false;
+
     private Vector2 originalScale;
-    GameManager gameManager;
-    public int currentHp;
-    public int maxhp = 100;
-    public int damage = 20;
 
     void Start()
     {
@@ -41,7 +38,6 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         Debug.Log(animator);
         originalScale = transform.localScale;
-        currentHp = maxhp;
     }
 
     void Update()
@@ -57,7 +53,7 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 
-    // 점프 처리
+    // 점프
     void HandleJump()
     {
 
@@ -121,32 +117,30 @@ public class Player : MonoBehaviour
         return isGrounded;
     }
 
-    // 피격
-    // public void Damage()
-    // {
-    //     animator.SetBool("IsDamage", true);
-    //     currentHp -= damage;
-    //     StartCoroutine(ResetDamageState());
-    // }
-    // IEnumerator ResetDamageState()
-    // {
-    //     yield return new WaitForSeconds(1f); // 1초 대기
-    //     animator.SetBool("IsDamage", false); // 다시 false로 변경
+    //피격
+    public void Damage()
+    {
+        animator.SetBool("IsDamage", true);
+        StartCoroutine(ResetDamageState());
+    }
+    IEnumerator ResetDamageState()
+    {
+        yield return new WaitForSeconds(1f); // 1초 대기
+        animator.SetBool("IsDamage", false);
+    }
 
-    // }
-
-    // 죽음
+    //죽음
     public virtual void Death()
     {
 
     rb.velocity = Vector3.zero;
 
-    foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
-    {
-        Color color = renderer.color;
-        color.a = 0.3f;
-        renderer.color = color;
-    }
+    // foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
+    // {
+    //     Color color = renderer.color;
+    //     color.a = 0.3f;
+    //     renderer.color = color;
+    // }
 
     foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
     {
@@ -154,6 +148,5 @@ public class Player : MonoBehaviour
     }
 
     Destroy(gameObject, 2f);
-    gameManager.EndGame();
     }
 }
