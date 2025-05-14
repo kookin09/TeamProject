@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4058357492702712118}
   - component: {fileID: 6446776553486647201}
   - component: {fileID: 6443912368186410130}
+  - component: {fileID: -3050077183220902763}
   m_Layer: 0
   m_Name: 'GEM '
   m_TagString: gem
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5689312133387119829}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.43, y: -0.99, z: 0}
+  m_LocalPosition: {x: 0, y: -3.5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 13cc88d678df4b84799b231cd9cfdc7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -114,9 +115,30 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
+<<<<<<< HEAD
+  m_Radius: 0.25
+=======
   m_Radius: 0.135
+--- !u!114 &-3050077183220902763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689312133387119829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 050dd8672d3f5bd43a0cd50ef8d67bb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gemPrefab: {fileID: 0}
+  spawnInterval: 1
+  spawnY: -3.5
+  spawnZ: 0
+  spawnCount: 3
+>>>>>>> develop

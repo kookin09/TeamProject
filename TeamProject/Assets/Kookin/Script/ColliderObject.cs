@@ -8,30 +8,30 @@ namespace Assets.Kookin.Script
 {
     public class ColliderObject : MonoBehaviour
     {
-        HpBar hpBar; //HpBar ½ºÅ©¸³Æ®ÀÇ °´Ã¼¸¦ ´ãÀ» º¯¼ö
-        GameManager gameManager; //GameManager ½ºÅ©¸³Æ®ÀÇ °´Ã¼¸¦ ´ãÀ» º¯¼ö
+        HpBar hpBar; //HpBar ìŠ¤í¬ë¦½íŠ¸ì˜ ê°ì²´ë¥¼ ë‹´ì„ ë³€ìˆ˜
+        GameManager gameManager; //GameManager ìŠ¤í¬ë¦½íŠ¸ì˜ ê°ì²´ë¥¼ ë‹´ì„ ë³€ìˆ˜
         private void Start()
         {
-            hpBar = GameObject.Find("HpBar").GetComponent<HpBar>(); //HpBar ½ºÅ©¸³Æ®ÀÇ °´Ã¼¸¦ Ã£´Â´Ù
+            hpBar = GameObject.Find("HpBar").GetComponent<HpBar>(); //HpBar ìŠ¤í¬ë¦½íŠ¸ì˜ ê°ì²´ë¥¼ ì°¾ëŠ”ë‹¤
 
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
 
-            if (collision.gameObject.tag == "") //""ÅÂ±×ÀÇ ¹°Ã¼¿Í Ãæµ¹ÇÏ¿´À» °æ¿ì
+            if (collision.gameObject.tag == "") //""íƒœê·¸ì˜ ë¬¼ì²´ì™€ ì¶©ëŒí•˜ì˜€ì„ ê²½ìš°
             {
-                if (hpBar.currentHp >= 0) //Ã¼·ÂÀÌ 0º¸´Ù Å¬ ¶§
+                if (hpBar.currentHp >= 0) //ì²´ë ¥ì´ 0ë³´ë‹¤ í´ ë•Œ
                 {
-                    hpBar.UpdateHp(10); //hp 10°¨¼Ò
+                    hpBar.UpdateHp(10); //hp 10ê°ì†Œ
                 }
                 else
                 {
-                    gameManager.GameOver(); //¹İ´ëÀÇ °æ¿ì °ÔÀÓÁ¾·á
+                    gameManager.GameOver(); //ë°˜ëŒ€ì˜ ê²½ìš° ê²Œì„ì¢…ë£Œ
                 }
             }
-            else if (collision.gameObject.tag == "") //""ÅÂ±×ÀÇ ¹°Ã¼¿Í Ãæµ¹ÇÏ¿´À» ¶§
+            else if (collision.gameObject.tag == "") //""íƒœê·¸ì˜ ë¬¼ì²´ì™€ ì¶©ëŒí•˜ì˜€ì„ ë•Œ
             {
-                hpBar.currentHp += 10; //hp 10È¸º¹
+                hpBar.currentHp += 10; //hp 10íšŒë³µ
 
             }
             else if (collision.gameObject.tag == "")
