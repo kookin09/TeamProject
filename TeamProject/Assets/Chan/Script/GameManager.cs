@@ -9,10 +9,12 @@ public class GameManager : MonoBehaviour
 
     public Text highScoreText;  // 최고 점수 표시용 UI Text
     public Text ClearTime;      // 클리어 시간 표시용 UI Text
-
+    public Text scoreTxt;
+    
     private float startTime;    // 게임 시작 시간 저장
     private float clearTime;    // 클리어 시 걸린 시간 저장
     private bool gameEnded = false;  // 게임 클리어 여부 체크
+    public int nowScore;
 
     private void Awake()
     {
@@ -30,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
         // 최고 점수 불러와서 텍스트에 표시
         int highScore = PlayerPrefs.GetInt("BestScore", 0);
         highScoreText.text = highScore.ToString();
@@ -92,7 +93,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         SceneManager.LoadScene("GameOver"); // GameOver 씬으로 이동
     }
-
+    public void UpdateScore(int addScore)
+    {
+        nowScore += addScore;
+        scoreTxt.text = nowScore.ToString();
+        Debug.Log(nowScore);
+    }
     // 점수 저장
     public void SaveScore(int score)
     {

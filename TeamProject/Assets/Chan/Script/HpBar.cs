@@ -43,7 +43,10 @@ public class HpBar : MonoBehaviour
     {
         // fillAmount는 이미지의 채워지는 비율을 0.0f ~ 1.0f 사이로 설정
         // 예: 체력이 50%일 경우 fillAmount = 0.5f
-        HpBarImage.fillAmount = (float)currentHp / maxHp;
+        if (HpBarImage != null)
+        {
+            HpBarImage.fillAmount = (float)currentHp / maxHp;
+        }
     }
     private void Update()
     {
