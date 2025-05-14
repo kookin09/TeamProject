@@ -34,7 +34,7 @@ public class Potion : MonoBehaviour
     }
     void Potions()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < spawnCount; i++)
         {
             lastPosX += 30f; // 각 Gem마다 x 위치를 1씩 증가시킴
             Vector3 spawnPosition = new Vector3(lastPosX, posY, posZ);
