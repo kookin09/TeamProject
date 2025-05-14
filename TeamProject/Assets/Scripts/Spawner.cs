@@ -6,8 +6,6 @@ public class Spawner : MonoBehaviour
 {
     public PoolManager pool;
 
-    // 기즈모 통해서 구간 표시하기.
-
     // SmallCoin이 생성될 위치
     private Vector3[] spawnPositions_small = new Vector3[]
     {
@@ -76,7 +74,7 @@ public class Spawner : MonoBehaviour
         new Vector3(84.5f, -2f, 0),
     };
 
-
+    // CoinBundle이 생성될 위치
     private Vector3[] spawnPositions_bundle = new Vector3[]
     {
         new Vector3(191.5f, -3f, 0),
