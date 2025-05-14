@@ -50,7 +50,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     // 현재 점수 반환
-    public int GetScore()
+    public int GetScore(int score)
     {
         return score;
     }

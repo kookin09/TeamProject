@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Eunsong/eunsong.unity
+    path: Assets/Main/MainScene.unity
     guid: 2d5d27a9562ba4442987c5d7172533a0
   - enabled: 1
-    path: Assets/Eunsong/GameOver.unity
+    path: Assets/Main/GameOver.unity
     guid: 9569df2d2a71745d09dccd56520e2e72
   m_configObjects: {}

@@ -9,15 +9,16 @@ public class GameManager : MonoBehaviour
 
    
     public Text ClearTime;      // 클리어 시간 표시용 UI Text
-
     private float startTime;    // 게임 시작 시간 저장
     private float clearTime;    // 클리어 시 걸린 시간 저장
     private bool gameEnded = false;  // 게임 클리어 여부 체크
 
     private void Awake()
     {
+        Time.timeScale = 0;
         // 싱글톤 패턴 구현
         if (Instance == null)
+        
         {
             Instance = this;
             DontDestroyOnLoad(gameObject); // 씬 넘어가도 유지됨
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject); // 중복 인스턴스 제거
         }
+
     }
 
     void Start()
@@ -71,8 +73,8 @@ public class GameManager : MonoBehaviour
     // 클리어 시간 표시 + 게임 일시 정지
     private void ShowClearTime()
     {
-        ClearTime.text = $"{FormatTime(clearTime)}";
-        Time.timeScale = 0f; // 게임 정지 (일시 정지)
+        // ClearTime.text = $"{FormatTime(clearTime)}";
+        // Time.timeScale = 0f; // 게임 정지 (일시 정지)
     }
 
     // float 초 단위 시간을 "분:초" 형식으로 바꿔주는 함수
