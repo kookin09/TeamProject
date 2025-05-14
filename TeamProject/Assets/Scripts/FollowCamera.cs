@@ -1,37 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
-   // 플레이어 등 따라갈 대상의 Transform
+    [Header("── 타겟 설정 ──")]
+    [Tooltip("카메라가 따라갈 대상 (플레이어)")]
     public Transform target;
 
-    // 따라갈 때 부드럽게 움직이는 속도 조절 (0~1 사이, 작을수록 더 천천히 따라가)
+    [Header("── 부드러운 추적 설정 ──")]
+    [Tooltip("0에 가까울수록 천천히, 1에 가까울수록 즉시 따라옴")]
+    [Range(0.01f, 1f)]
     public float smoothSpeed = 0.125f;
 
-    // 카메라 위치를 약간 옮기고 싶을 때 사용 (예: 캐릭터보다 앞쪽을 보여주고 싶을 때)
-    public float offsetX;
+    [Header("── 오프셋 설정 ──")]
+    [Tooltip("타겟보다 X축으로 얼만큼 앞서 보여줄지")]
+    public float offsetX = 2f;
 
+    private Vector3 currentVelocity;
 
-    // 물리 연산 후 카메라 이동은 LateUpdate에서
-
-
-    void Start()
-    {
-        offsetX = transform.position.x - target.position.x;
-    }
     void LateUpdate()
     {
-        // 목표 위치 = 플레이어 위치 + 오프셋
-        Vector3 desiredPosition = transform.position;
-        desiredPosition.x = target.position.x + offsetX;
-        transform.position = desiredPosition;
+        if (target == null) return;
 
-        // // 현재 위치에서 목표 위치로 부드럽게 이동 (Lerp: 선형 보간)
-        // Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        // 1) 목표 X 위치 = 타겟 X + 오프셋
+        float targetX = target.position.x + offsetX;
 
-        // // 카메라를 부드럽게 이동시키되 Y, Z 고정하고 X만 따라가게끔
-        // transform.position = new Vector3(smoothedPosition.x, transform.position.y, transform.position.z);
+        // 2) 현재 카메라 위치에서 Y,Z는 그대로, X만 목표로 보간
+        Vector3 desiredPosition = new Vector3(
+            targetX,
+            transform.position.y,
+            transform.position.z
+        );
+
+        // 3) Lerp로 부드럽게 이동
+        Vector3 smoothed = Vector3.Lerp(
+            transform.position,
+            desiredPosition,
+            smoothSpeed
+        );
+
+        transform.position = smoothed;
     }
 }
