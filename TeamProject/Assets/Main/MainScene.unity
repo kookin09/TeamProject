@@ -1213,14 +1213,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6550432720726904964, guid: 1e8ffb2f21a909b46bb2883ddb8a7b21, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &415436796
@@ -10072,7 +10072,7 @@ Tilemap:
       - {fileID: 21300000, guid: 83c48acc044031b4586cd3a220adf2bc, type: 3}
       - {fileID: 21300000, guid: 18bc0a66b0a09fb42b5f2526223fd314, type: 3}
       - {fileID: 21300000, guid: cf8a41b3b2873ce40b14669e46079cae, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 68, y: -5, z: 0}
@@ -10463,7 +10463,7 @@ Tilemap:
       - {fileID: 21300000, guid: 83c48acc044031b4586cd3a220adf2bc, type: 3}
       - {fileID: 21300000, guid: 18bc0a66b0a09fb42b5f2526223fd314, type: 3}
       - {fileID: 21300000, guid: cf8a41b3b2873ce40b14669e46079cae, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 85, y: -5, z: 0}

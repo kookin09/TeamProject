@@ -11,10 +11,10 @@ public class GamController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ScoreManager scoreManager = gameObject.GetComponent<ScoreManager>();
-            scoreManager.GetScore(1000);
+            // ScoreManager scoreManager = gameObject.GetComponent<ScoreManager>();
+            // scoreManager.GetScore(1000);
 
-            Debug.Log("½ºÄÚ¾î 1000Á¡ È¹µæ");
+            Debug.Log("ìŠ¤ì½”ì–´ 1000ì  íšë“");
 
         }
             

@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6891815659845538091}
   - component: {fileID: 2270144491111133168}
-  - component: {fileID: -4762623332147214097}
+  - component: {fileID: 2114979225553510778}
+  - component: {fileID: -6387823780950991507}
   m_Layer: 0
   m_Name: Potion
   m_TagString: potion
@@ -85,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &-4762623332147214097
-PolygonCollider2D:
+--- !u!61 &2114979225553510778
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -127,13 +128,18 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.1, y: 0.5285714}
-      - {x: -0.24285714, y: 0.41428572}
-      - {x: -0.27142859, y: 0.24285714}
-      - {x: -0.27142859, y: -0.5285714}
-      - {x: 0.27142859, y: -0.5285714}
-      - {x: 0.27142859, y: 0.5}
-      - {x: 0.18571429, y: 0.5285714}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.62, y: 1.05}
+  m_EdgeRadius: 0
+--- !u!114 &-6387823780950991507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7579000646496061069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5188e37258d154db59137a8a9fab7333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
