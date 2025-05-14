@@ -22,11 +22,11 @@ public class PlayerCollision : MonoBehaviour
         {
             if(hpbar != null)
             {
-                hpbar.UpdateHp(20);
+                hpbar.RecoveryHp(20);
             }
             Destroy(collision.gameObject);
         }
-        else if(collision.gameObject.tag == "Gem")
+        else if(collision.gameObject.tag == "gem")
         {
             if(score != null)
             {
