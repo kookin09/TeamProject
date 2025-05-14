@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     // 싱글톤 인스턴스 (다른 스크립트에서 GameManager.Instance로 접근 가능)
     public static GameManager Instance { get; private set; }
 
-    public Text highScoreText;  // 최고 점수 표시용 UI Text
+   
     public Text ClearTime;      // 클리어 시간 표시용 UI Text
 
     private float startTime;    // 게임 시작 시간 저장
@@ -29,13 +29,7 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {
-        
-        // 최고 점수 불러와서 텍스트에 표시
-        int highScore = PlayerPrefs.GetInt("BestScore", 0);
-        highScoreText.text = highScore.ToString();
-
-        
+    {      
         if (SceneManager.GetActiveScene().name != "GameOver")
         {
             StartTimer();
@@ -94,9 +88,5 @@ public class GameManager : MonoBehaviour
     }
 
     // 점수 저장
-    public void SaveScore(int score)
-    {
-        PlayerPrefs.SetInt("BestScore", score);
-        PlayerPrefs.Save();
-    }
+  
 }
