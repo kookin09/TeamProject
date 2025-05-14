@@ -28,6 +28,24 @@ public class HpBar : MonoBehaviour
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);   // 체력을 0 ~ maxHp 사이로 제한
         UpdateHpBar();              // 체력바 UI 갱신
     }
+<<<<<<< HEAD
+=======
+    // 물약과 충돌 시 체력을 회복시키는 함수
+    public void RecoveryHp(int recovery)
+    {
+        currentHp += recovery;        // 데미지만큼 체력 회복
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);   // 체력을 0 ~ maxHp 사이로 제한
+        UpdateHpBar();              // 체력바 UI 갱신
+    }
+
+    // 체력을 최대값으로 회복시키는 함수
+    public void ResetHp()
+    {
+        currentHp = maxHp;          // 체력을 최대값으로 설정
+        UpdateHpBar();              // 체력바 UI 갱신
+    }
+
+>>>>>>> develop
     // 체력바 UI를 현재 체력에 맞게 업데이트하는 함수
     void UpdateHpBar()
     {
