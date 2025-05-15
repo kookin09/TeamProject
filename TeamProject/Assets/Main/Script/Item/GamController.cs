@@ -11,10 +11,9 @@ public class GamController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // ScoreManager scoreManager = gameObject.GetComponent<ScoreManager>();
+            UIManager uiManager = GameObject.Find("UIManager").GetComponentInChildren<UIManager>();
             // scoreManager.GetScore(1000);
-
-            Debug.Log("스코어 1000점 획득");
+            uiManager.AddScore(1000);
 
         }
             

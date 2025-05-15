@@ -28,8 +28,8 @@ namespace Assets.Kookin.Script
                 if (hpBar.currentHp > 0) //체력이 0보다 클 때
                 {
                     hpBar.MinusHp(20); //hp 20감소
+                    Debug.Log(hpBar.currentHp);
                     player.Damage();
-
                 }
                 else
                 {

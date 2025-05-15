@@ -7,10 +7,10 @@ public class Spawner : MonoBehaviour
 {
     public ItemPoolManager pool;
 
-    // SmallCoin이 생성될 위치
+    // SmallCoin 생성위치
     private Vector3[] spawnPositions_small = new Vector3[]
     {
-        new Vector3(7f, -3.5f, 0), //땅 1칸. y값 -3.5
+        new Vector3(7f, -3.5f, 0), 
         new Vector3(8f, -3.5f, 0),
         new Vector3(11f, -3.5f, 0),
         new Vector3(12f, -3.5f, 0),
@@ -24,13 +24,12 @@ public class Spawner : MonoBehaviour
         new Vector3(27f, -3.5f, 0),
         new Vector3(28f, -3.5f, 0),
 
-        new Vector3(44.5f, -2.5f, 0), //땅 2칸. y값 -2.5
+        new Vector3(44.5f, -2.5f, 0), 
         
         new Vector3(60f, -3.5f, 0),
         new Vector3(64f, -3.5f, 0),
         
         new Vector3(72f, -0.0f, 0), 
-        new Vector3(76f, -0f, 0),
         new Vector3(80f, -0f, 0),
         
         new Vector3(88.5f, -2.5f, 0),
@@ -60,20 +59,16 @@ public class Spawner : MonoBehaviour
         new Vector3(133.5f, -2.5f, 0),
         new Vector3(134.5f, -2.5f, 0),
         new Vector3(135.5f, -2.5f, 0),
-
-
-        
     };
 
-
-    // bigCoin이 생성될 위치
+    // bigcoin 생성위치
     private Vector3[] spawnPositions_big = new Vector3[]
     {
         new Vector3(15, -2f, 0),
         new Vector3(84.5f, -2f, 0),
     };
 
-    // CoinBundle이 생성될 위치
+    // bundle 생성위치
     private Vector3[] spawnPositions_bundle = new Vector3[]
     {
         new Vector3(102.5f, -3f, 0),
@@ -81,7 +76,7 @@ public class Spawner : MonoBehaviour
 
     };
 
-    // gam이 생성될 위치
+    // gam 생성위치
     private Vector3[] spawnPositions_gam = new Vector3[]
     {
         new Vector3(20.5f, -2.35f, 0),
@@ -122,7 +117,7 @@ public class Spawner : MonoBehaviour
         new Vector3(162f, -2.35f, 0),
     };
 
-    // potion이 생성될 위치
+    // potion 생성위치
     private Vector3[] spawnPositions_potion = new Vector3[]
     {
         new Vector3(109.5f, 3.9f, 0)

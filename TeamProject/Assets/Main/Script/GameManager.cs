@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private float clearTime;    // 클리어 시 걸린 시간 저장
     private bool gameEnded = false;  // 게임 클리어 여부 체크
 
+    UIManager uiManager;
+
     private void Awake()
     {
         Time.timeScale = 0;
@@ -31,8 +33,8 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-
-    {      
+    {
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
 
         if (SceneManager.GetActiveScene().name != "GameOver")
         {
@@ -90,6 +92,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over");
         SceneManager.LoadScene("GameOver"); // GameOver 씬으로 이동
+        uiManager.SaveScore();
     }
 
     // 점수 저장
