@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
         currentScoreText.text = score.ToString();
         currentGoldText.text = gold.ToString();
         GoldText.text = $"Gold : {gold}";
-        Debug.Log(gold);
+        Debug.Log("°ñµå:" + gold);
 
     }
 
