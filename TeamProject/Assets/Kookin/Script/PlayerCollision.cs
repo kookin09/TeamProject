@@ -28,7 +28,7 @@ public class PlayerCollision : MonoBehaviour
             Player player = collision.GetComponent<Player>();
             if (player != null && hpBar != null)
             {
-                hpBar.UpdateHp(10);
+                hpBar.MinusHp(10);
             }
         }
         else if (collision.gameObject.tag == "potion")
@@ -46,9 +46,7 @@ public class PlayerCollision : MonoBehaviour
             if (player != null)
             {
                 gameManager.UpdateScore(100);
-                Debug.Log("현재 점수: " + gameManager.nowScore);
             }
-            Debug.Log("충돌");
             Destroy(collision.gameObject);
         }
     }
