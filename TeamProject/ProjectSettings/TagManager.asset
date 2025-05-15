@@ -8,15 +8,14 @@ TagManager:
   - obstacle
   - gem
   - potion
-  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Ground
+  - Goal
   - 
   - 
   - 
