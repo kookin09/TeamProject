@@ -7,12 +7,14 @@ public class HpBar : MonoBehaviour
     public int maxHp = 100;  // 최대 체력 값
     public int currentHp;  // 현재 체력 값
     public Image HpBarImage;  // 체력바로 사용할 Image UI (Filled 타입 사용)
+    Player player;
 
 
     void Start()
     {
         currentHp = maxHp;     
-        Debug.Log(currentHp);       
+        Debug.Log(currentHp);
+        player = FindObjectOfType<Player>(); 
     }
     // 체력을 최대값으로 회복시키는 함수
     public void ResetHp()
@@ -51,6 +53,14 @@ public class HpBar : MonoBehaviour
         if (HpBarImage != null)
         {
             HpBarImage.fillAmount = (float)currentHp / maxHp;
+        }
+    }
+
+    public void ZeroHp()
+    {
+        if(currentHp <= 0)
+        {
+            player.Death();
         }
     }
     // private void Update()

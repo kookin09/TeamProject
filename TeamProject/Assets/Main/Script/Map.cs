@@ -10,9 +10,10 @@ public class Map : MonoBehaviour
         {
             Player player = collision.gameObject.GetComponent<Player>();
             GameManager gameManager = FindObjectOfType<GameManager>();
+            HpBar hpbar = FindObjectOfType<HpBar>();
             player.Death();
             gameManager.EndGame();
+            
         }
     }
-
 }

@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game Over");
-        SceneManager.LoadScene("GameOver"); // GameOver 씬으로 이동
+        // SceneManager.LoadScene("GameOver"); // GameOver 씬으로 이동
         uiManager.SaveScore();
     }
 
