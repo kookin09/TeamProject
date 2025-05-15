@@ -7,12 +7,14 @@ public class GameManager : MonoBehaviour
     // 싱글톤 인스턴스 (다른 스크립트에서 GameManager.Instance로 접근 가능)
     public static GameManager Instance { get; private set; }
 
-   
-    public Text ClearTime;      // 클리어 시간 표시용 UI Text
+    public Text highScoreText; // 최고 점수 표시용 UI Text
+    public Text ClearTime; // 클리어 시간 표시용 UI Text
+    public Text scoreTxt;
 
-    private float startTime;    // 게임 시작 시간 저장
-    private float clearTime;    // 클리어 시 걸린 시간 저장
-    private bool gameEnded = false;  // 게임 클리어 여부 체크
+    private float startTime; // 게임 시작 시간 저장
+    private float clearTime; // 클리어 시 걸린 시간 저장
+    private bool gameEnded = false; // 게임 클리어 여부 체크
+    public int nowScore;
 
     private void Awake()
     {
@@ -29,11 +31,15 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {      
+    {
+        // 최고 점수 불러와서 텍스트에 표시
+        int highScore = PlayerPrefs.GetInt("BestScore", 0);
+        highScoreText.text = highScore.ToString();
+
+
         if (SceneManager.GetActiveScene().name != "GameOver")
         {
-            if (SceneManager.GetActiveScene().name != "GameStart")
-                StartTimer();
+            StartTimer();
         }
     }
 
@@ -42,8 +48,8 @@ public class GameManager : MonoBehaviour
         // 게임이 아직 끝나지 않았고, 겜오버 씬이 아닐 때만 시간 업데이트
         if (!gameEnded && SceneManager.GetActiveScene().name != "GameOver")
         {
-            float elapsed = Time.time - startTime;        // 경과 시간 계산
-            ClearTime.text = FormatTime(elapsed);         // 텍스트로 표시
+            float elapsed = Time.time - startTime; // 경과 시간 계산
+            ClearTime.text = FormatTime(elapsed); // 텍스트로 표시
         }
     }
 
@@ -63,7 +69,7 @@ public class GameManager : MonoBehaviour
         clearTime = Time.time - startTime; // 클리어 시점의 경과 시간 저장
         gameEnded = true;
 
-        ShowClearTime();       // 클리어 시간 텍스트 표시
+        ShowClearTime(); // 클리어 시간 텍스트 표시
     }
 
     // 클리어 시간 표시 + 게임 일시 정지
@@ -78,7 +84,7 @@ public class GameManager : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(time / 60f); // 분 단위
         int seconds = Mathf.FloorToInt(time % 60f); // 초 단위
-        return $"{minutes:00}분:{seconds:00}초";        // 예: 01:05
+        return $"{minutes:00}분:{seconds:00}초"; // 예: 01:05
     }
 
     // 게임 오버 처리 (씬 전환 등)
@@ -87,7 +93,16 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over");
         SceneManager.LoadScene("GameOver"); // GameOver 씬으로 이동
     }
-
+    public void UpdateScore(int addScore)
+    {
+        nowScore += addScore;
+        scoreTxt.text = nowScore.ToString();
+        Debug.Log(nowScore);
+    }
     // 점수 저장
-  
+    public void SaveScore(int score)
+    {
+        PlayerPrefs.SetInt("BestScore", score);
+        PlayerPrefs.Save();
+    }
 }

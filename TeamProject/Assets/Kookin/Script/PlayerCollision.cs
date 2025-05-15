@@ -13,28 +13,22 @@ public class PlayerCollision : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
-        // hpBar를 찾거나 할당
-        hpBar = FindObjectOfType<HpBar>();
-        if (hpBar == null)
-        {
-            Debug.LogError("HpBar를 찾을 수 없습니다. 씬에 HpBar 오브젝트가 있는지 확인하세요.");
-        }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "obstacle")
+        if (collision.gameObject.tag == "obstacle") //""태그의 물체와 충돌하였을 경우
         {
             Player player = collision.GetComponent<Player>();
-            if (player != null && hpBar != null)
+            if (player != null)
             {
                 hpBar.UpdateHp(10);
             }
+
         }
-        else if (collision.gameObject.tag == "potion")
+        else if (collision.gameObject.tag == "potion") //""태그의 물체와 충돌하였을 때
         {
             Player player = collision.GetComponent<Player>();
-            if (player != null && hpBar != null)
+            if (player != null)
             {
                 hpBar.RecoveryHp(10);
             }
