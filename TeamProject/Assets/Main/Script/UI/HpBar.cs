@@ -12,8 +12,7 @@ public class HpBar : MonoBehaviour
 
     void Start()
     {
-        currentHp = maxHp;     
-        Debug.Log(currentHp);
+        ResetHp();     
         player = FindObjectOfType<Player>(); 
     }
     // 체력을 최대값으로 회복시키는 함수
@@ -56,17 +55,9 @@ public class HpBar : MonoBehaviour
         }
     }
 
-    public void ZeroHp()
-    {
-        if(currentHp <= 0)
-        {
-            player.Death();
-        }
-    }
-    // private void Update()
-    // {
-    //     if (currentHp <= 0)
-    //     {
+    
+
+
 
     //         // 체력이 0 이하일 경우 게임 오버 처리
     //         Debug.Log("Game Over");

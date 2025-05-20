@@ -15,7 +15,6 @@ namespace Assets.Kookin.Script
         private void Start()
         {
             hpBar = GameObject.Find("HpBar").GetComponentInChildren<HpBar>();
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         }
 
         private void OnTriggerEnter2D(Collider2D collision) 
@@ -28,12 +27,11 @@ namespace Assets.Kookin.Script
                 if (hpBar.currentHp > 0) //체력이 0보다 클 때
                 {
                     hpBar.MinusHp(20); //hp 20감소
-                    Debug.Log(hpBar.currentHp);
                     player.Damage();
                 }
                 else
                 {
-                    gameManager.GameOver(); //반대의 경우 게임종료
+                    GameManager.Instance.EndGame(); //반대의 경우 게임종료
                 }
             }
         }

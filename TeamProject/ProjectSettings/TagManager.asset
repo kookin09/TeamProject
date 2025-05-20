@@ -6,8 +6,8 @@ TagManager:
   tags:
   - BackGround
   - obstacle
-  - gem
-  - potion
+  - Item
+  - Undefined
   layers:
   - Default
   - TransparentFX

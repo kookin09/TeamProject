@@ -13,54 +13,53 @@ public class CoinController : MonoBehaviour
     [SerializeField] private GameObject target;
     [SerializeField] private ParticleSystem coinDestroyEffectSystem; //코인아이템 충돌시 이펙트
     UIManager uiManager;
+    Player player;
+    public ItemPoolManager pool;
+    Spawner spawner;
+
     void Start()
     {
         // Vector3 targetPos = target.transform.position;
         // targetRangeX = targetPos.x + 10f;
 
         uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
-
-
-
-        Debug.Log(uiManager);
-    
+        player = GameObject.Find("Player").GetComponent<Player>();
+        pool = GameObject.Find("ItemPoolManager").GetComponent<ItemPoolManager>();
+        spawner = GameObject.Find("Spawner").GetComponent<Spawner>();
     }
     void Update()
     {
-        // transform.Translate(Vector3.zero * Time.deltaTime);
 
-        // // 화면 벗어나면 풀로 반환
-        // // if (transform.position.x < targetRangeX)
-        // // {
-        //     PoolManager pool = FindObjectOfType<PoolManager>();
-        //     pool.ReturnToPool(ObjectType.smallCoin, this.gameObject);
-        // // }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
         if (other.CompareTag("Player"))
         {
-            Debug.Log("플레이어가 골드에 부딪힘");
             if(gameObject.name.StartsWith("BigCoin"))
             {
                 uiManager.AddGold(bigCoin);
-                CoinDestroyEffect();
+                
+                pool.ReturnToPool(ObjectType.bigCoin, this.gameObject);
+                foreach (var pair in pool.pools)
+                {
+                    Debug.Log($"Type: {pair.Key}, Count: {pair.Value.Count}");
+                }
             }
-
             else if(gameObject.name.StartsWith("SmallCoin"))
             {
                 uiManager.AddGold(smallCoin);
-                CoinDestroyEffect();
-
+                StartCoroutine(PlayEffectAndReturn(ObjectType.smallCoin));
+                // pool.ReturnToPool(ObjectType.smallCoin, this.gameObject);
+                spawner.PlayDestroyEffect(transform.position);
             }
-
             else if(gameObject.name.StartsWith("CoinBundle"))
             {
                 uiManager.AddGold(coinBundle);
-                CoinDestroyEffect();
+                pool.ReturnToPool(ObjectType.coinBundle, this.gameObject);
             }  
-            Destroy(gameObject);
+            
         
         }
     }
@@ -70,8 +69,22 @@ public class CoinController : MonoBehaviour
     {
         coinDestroyEffectSystem.Stop();
         coinDestroyEffectSystem.Play();
+        Debug.Log("이펙트 실행중");
+        
     }
-
-
     
+
+        private IEnumerator PlayEffectAndReturn(ObjectType type)
+    {
+        // 이펙트 위치 옮기고 재생
+        coinDestroyEffectSystem.transform.position = transform.position;
+        coinDestroyEffectSystem.Play();
+
+        float waitTime = 0.2f;
+
+        yield return new WaitForSeconds(waitTime);
+
+        // 코인을 풀로 되돌리기
+        pool.ReturnToPool(type, this.gameObject);
+    }
 }

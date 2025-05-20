@@ -8,12 +8,7 @@ public class Map : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("GroundCheck"))
         {
-            Player player = collision.gameObject.GetComponent<Player>();
-            GameManager gameManager = FindObjectOfType<GameManager>();
-            HpBar hpbar = FindObjectOfType<HpBar>();
-            player.Death();
-            gameManager.EndGame();
-            
+            GameManager.Instance.EndGame();
         }
     }
 }

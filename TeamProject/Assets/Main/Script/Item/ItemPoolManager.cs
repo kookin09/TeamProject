@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 // 오브젝트(아이템) 풀링 시스템
-public enum ObjectType {smallCoin, bigCoin, coinBundle, gam, potion}
+public enum ObjectType {smallCoin, bigCoin, coinBundle, gam, potion, destroyCoinEffect}
 public class ItemPoolManager : MonoBehaviour
 {
     
@@ -16,7 +16,7 @@ public class ItemPoolManager : MonoBehaviour
     }
 
     public List<PoolItem> items;
-    private Dictionary<ObjectType, Queue<GameObject>> pools = new();
+    public Dictionary<ObjectType, Queue<GameObject>> pools = new();
 
     private void Awake()
     {
@@ -39,14 +39,12 @@ public class ItemPoolManager : MonoBehaviour
     {
         if (!pools.ContainsKey(type)) 
         {
-            Debug.Log("pools: null");
             return null;
         }
         Queue<GameObject> queue = pools[type];
         GameObject obj = queue.Count > 0 ? queue.Dequeue() : Instantiate(GetPrefab(type));
         obj.transform.position = position;
         obj.SetActive(true);
-        Debug.Log("pools: 있음");
         return obj;
     }
 
@@ -58,6 +56,8 @@ public class ItemPoolManager : MonoBehaviour
         if (!pools.ContainsKey(type)) pools[type] = new Queue<GameObject>();
         pools[type].Enqueue(obj); 
     }
+
+    
 
     private GameObject GetPrefab(ObjectType type)
     {

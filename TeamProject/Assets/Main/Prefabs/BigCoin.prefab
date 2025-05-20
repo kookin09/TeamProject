@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3340528936644424540}
   m_Layer: 0
   m_Name: BigCoin
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,6 +165,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 1195397553771857788, guid: 89f4893e227cf42c38666c00f899d4b0, type: 3}

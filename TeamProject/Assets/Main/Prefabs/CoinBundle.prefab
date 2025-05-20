@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &2116609030028852503
@@ -333,7 +332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &3827905557580073900
@@ -501,7 +499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &5470492075322075873
@@ -669,7 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &6852086935126267205
@@ -837,7 +833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &6972232514225589146
@@ -1005,7 +1000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &7326661477235344062
@@ -1173,7 +1167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &7781994732979405583
@@ -1341,7 +1334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &8190346652664779043
@@ -1509,7 +1501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &8268245368260772115
@@ -1677,7 +1668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &8656795139826174387
@@ -1845,7 +1835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce3c6533df904a87aa9a7419e0d7e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRangeX: 0
   target: {fileID: 0}
   coinDestroyEffectSystem: {fileID: 0}
 --- !u!1 &8951127506458816581
@@ -1859,7 +1848,7 @@ GameObject:
   - component: {fileID: 9059314654463232443}
   m_Layer: 0
   m_Name: CoinBundle
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

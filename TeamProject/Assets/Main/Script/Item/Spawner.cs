@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,6 +7,14 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public ItemPoolManager pool;
+    Player player;
+    private float playerRange = 20f;
+    private HashSet<Vector3> spawnedPositions = new HashSet<Vector3>();
+
+    private void Start() 
+    {
+        player = GameObject.Find("Player").GetComponent<Player>();
+    }
 
     // SmallCoin 생성위치
     private Vector3[] spawnPositions_small = new Vector3[]
@@ -124,28 +133,49 @@ public class Spawner : MonoBehaviour
     };
 
 
-    void Start()
+    void Update()
     {
-        foreach (var pos in spawnPositions_small)
-        {
-            pool.GetFromPool(ObjectType.smallCoin, pos);
-        }
-        foreach (var pos in spawnPositions_big)
-        {
-            pool.GetFromPool(ObjectType.bigCoin, pos);
-        }
-        foreach (var pos in spawnPositions_bundle)
-        {
-            pool.GetFromPool(ObjectType.coinBundle, pos);
-        }
-        foreach (var pos in spawnPositions_gam)
-        {
-            pool.GetFromPool(ObjectType.gam, pos);
-        }
-        foreach (var pos in spawnPositions_potion)
-        {
-            pool.GetFromPool(ObjectType.potion, pos);
-        }
-
+        Spawn(spawnPositions_small, ObjectType.smallCoin);
+        Spawn(spawnPositions_big, ObjectType.bigCoin);
+        Spawn(spawnPositions_bundle, ObjectType.coinBundle);
+        Spawn(spawnPositions_gam, ObjectType.gam);
+        Spawn(spawnPositions_potion, ObjectType.potion);
     }
+
+    private void Spawn(Vector3[] Itemname, ObjectType type)
+    {
+        foreach (Vector3 pos in Itemname)
+        {
+            float distance = Vector3.Distance(player.transform.position, pos);
+            // Debug.Log($"distance: {distance} playerrange {playerRange}");
+            if (distance <= playerRange && !spawnedPositions.Contains(pos))
+            {   
+                pool.GetFromPool(type, pos);
+                spawnedPositions.Add(pos);
+            }
+
+            // else if(distance > playerRange)
+            // {
+            //     pool.ReturnToPool(type, this.gameObject);
+            // }
+        }
+    }
+    public void PlayDestroyEffect(Vector3 position)
+    {
+        GameObject effectObj = pool.GetFromPool(ObjectType.destroyCoinEffect, position);
+        ParticleSystem ps = effectObj.GetComponent<ParticleSystem>();
+
+        if (ps != null)
+        {
+            ps.Play();
+            StartCoroutine(EffectReturnCoroutine(ObjectType.destroyCoinEffect, effectObj, ps.main.duration + ps.main.startLifetime.constantMax));
+        }
+    }
+        private IEnumerator EffectReturnCoroutine(ObjectType type, GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        pool.ReturnToPool(type, this.gameObject);
+    }
+
+
 }
